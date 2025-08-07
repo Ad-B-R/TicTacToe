@@ -1,5 +1,6 @@
 const board = document.getElementById('board');
 let isGameOver = 0;
+let isGameDraw = 0;
 let playerMove = 1;
 let boardArray = ['-','-','-','-','-','-','-','-','-']
 
@@ -30,22 +31,32 @@ function checkWinner(){
         if((boardArray[3*i]==boardArray[3*i+1])&&(boardArray[3*i]==boardArray[3*i+2])&&(boardArray[3*i]!='-')){
             console.log(`${boardArray[i]} is the winner!`);
             isGameOver = 1;
+            return;
         }
     }
     for(let i = 0;i<3;i++){
         if(boardArray[i]==boardArray[i+3]&&boardArray[i]==boardArray[i+6]&&(boardArray[i]!='-')){
             console.log(`${boardArray[i]} is the winner!`);
             isGameOver = 1;
+            return;
         }
     }
     if(boardArray[0]==boardArray[4]&&boardArray[4]==boardArray[8]&&boardArray[0]!='-'){
         console.log(`${boardArray[0]} is the winner!`);
         isGameOver = 1;
+        return;
     }
     else if(boardArray[2]==boardArray[4]&&boardArray[4]==boardArray[6]&&boardArray[4]!='-'){
         console.log(`${boardArray[0]} is the winner!`);
         isGameOver = 1;
+        return;
     }
+    for(let i = 0;i<9;i++){
+        if(boardArray[i]=='-') return;
+    }
+    console.log('is Draw');
+    isGameDraw = 1;
+    isGameOver = 1;
 }
 board.addEventListener('click',function(event){
     const select = event.target.closest('div');
