@@ -1,0 +1,27 @@
+
+#board{
+    /* margin:50vh; */
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    align-content: center;
+    margin:0 auto;
+    margin-top: 30vh;
+    height:40vh;
+    width:40vh;
+}
+.cell{
+    border:1px solid black;
+}
+.X{
+    text-align: center;
+    font-size: 3rem;
+    padding-top:25%;
+    color:red;
+}
+.O{
+    color:blue;
+    padding-top:25%;
+    text-align: center;
+    font-size: 3rem;
+}
