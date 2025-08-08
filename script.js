@@ -1,5 +1,8 @@
 const board = document.getElementById('board');
 const restart = document.getElementById('restartbutton');
+const winsOfX = document.getElementById('displayX');
+const winsOfO = document.getElementById('displayO');
+const winsOfDraw = document.getElementById('displayDraw');
 let isGameOver = 0;
 let isGameDraw = 0;
 let playerMove = 1;
@@ -19,6 +22,9 @@ function appendPlayer(cell, playerMove){
         boardArray[parseInt(cell.id)] = 'O';
     }
 }
+function scoreCard(){
+
+}
 function checkIfOccupied(cell){
     if(boardArray[parseInt(cell.id)]==='-'){
         return true;
@@ -27,11 +33,19 @@ function checkIfOccupied(cell){
         return false;
     }
 }
-function checkWinner(){
+function checkWinner(isPlayingGame){
     for(let i = 0;i<3;i++){
         if((boardArray[3*i]==boardArray[3*i+1])&&(boardArray[3*i]==boardArray[3*i+2])&&(boardArray[3*i]!='-')){
             console.log(`${boardArray[i]} is the winner!`);
             isGameOver = 1;
+            if(isPlayingGame&&isGameOver){
+                if(boardArray[i]=='X'){
+            winsOfX.textContent = parseInt(winsOfX.textContent) + 1;
+        }
+        else{
+            winsOfO.textContent = parseInt(winsOfO.textContent) + 1;
+        }
+            }
             return;
         }
     }
@@ -39,17 +53,41 @@ function checkWinner(){
         if(boardArray[i]==boardArray[i+3]&&boardArray[i]==boardArray[i+6]&&(boardArray[i]!='-')){
             console.log(`${boardArray[i]} is the winner!`);
             isGameOver = 1;
+            if(isPlayingGame&&isGameOver){
+                if(boardArray[i]=='X'){
+            winsOfX.textContent = parseInt(winsOfX.textContent) + 1;
+        }
+        else{
+            winsOfO.textContent = parseInt(winsOfO.textContent) + 1;
+        }
+            }
             return;
         }
     }
     if(boardArray[0]==boardArray[4]&&boardArray[4]==boardArray[8]&&boardArray[0]!='-'){
         console.log(`${boardArray[0]} is the winner!`);
         isGameOver = 1;
+        if(isPlayingGame&&isGameOver){
+            if(boardArray[4]=='X'){
+            winsOfX.textContent = parseInt(winsOfX.textContent) + 1;
+        }
+        else{
+            winsOfO.textContent = parseInt(winsOfO.textContent) + 1;
+        }
+        }
         return;
     }
     else if(boardArray[2]==boardArray[4]&&boardArray[4]==boardArray[6]&&boardArray[4]!='-'){
         console.log(`${boardArray[0]} is the winner!`);
         isGameOver = 1;
+        if(isPlayingGame&&isGameOver){
+            if(boardArray[4]=='X'){
+            winsOfX.textContent = parseInt(winsOfX.textContent) + 1;
+        }
+        else{
+            winsOfO.textContent = parseInt(winsOfO.textContent) + 1;
+        }
+        }
         return;
     }
     for(let i = 0;i<9;i++){
@@ -58,6 +96,10 @@ function checkWinner(){
     console.log('is Draw');
     isGameDraw = 1;
     isGameOver = 1;
+    if(isPlayingGame&&isGameOver){
+        winsOfDraw.textContent = parseInt(winsOfDraw.textContent)+1;
+        console.log("Draw working");
+    }
 }
 function playerGameMode(){
     return;
@@ -70,20 +112,20 @@ board.addEventListener('click',function(event){
     if(checkIfOccupied(select)&& !isGameOver){
         if(playerMove==1){
             select.textContent = 'X';
-            select.classList.add('X');
+            select.classList.add('char');
             appendPlayer(select,playerMove)
             playerMove = -1;
             console.log(boardArray);
         }
         else{
             select.textContent='O';
-            select.classList.add('O');
+            select.classList.add('char');
             appendPlayer(select,playerMove)
             playerMove = 1;
             console.log(boardArray);
         }
     }
-    checkWinner();
+    checkWinner(1);
     if(isGameOver){
         const gameRestartButton = document.getElementById('restart');
         gameRestartButton.classList.remove('invisble');

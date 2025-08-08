@@ -1,5 +1,6 @@
 body, html{
     background-color: #212121;
+    color:white;
 }
 #board{
     /* margin:50vh; */
@@ -15,17 +16,11 @@ body, html{
 .cell{
     border:1px solid white;
 }
-.X{
+.char{
     text-align: center;
     font-size: 3rem;
     padding-top:25%;
-    color:red;
-}
-.O{
-    color:blue;
-    padding-top:25%;
-    text-align: center;
-    font-size: 3rem;
+    color:white;
 }
 .invisible{
     display: none;
@@ -45,4 +40,11 @@ body, html{
     background-color: orange;
     font-family: serif;
     font-size: 2rem;
+}
+#WinLoses{
+    display:flex;
+    justify-content: center;
+    gap:2rem;
+    font-size: 2rem;
+    margin-top: 5vh;
 }
