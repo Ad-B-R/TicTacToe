@@ -1,4 +1,6 @@
-
+body, html{
+    background-color: #212121;
+}
 #board{
     /* margin:50vh; */
     display: grid;
@@ -11,7 +13,7 @@
     width:40vh;
 }
 .cell{
-    border:1px solid black;
+    border:1px solid white;
 }
 .X{
     text-align: center;
