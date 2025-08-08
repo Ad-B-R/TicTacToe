@@ -1,4 +1,5 @@
 const board = document.getElementById('board');
+const restart = document.getElementById('restartbutton');
 let isGameOver = 0;
 let isGameDraw = 0;
 let playerMove = 1;
@@ -58,6 +59,12 @@ function checkWinner(){
     isGameDraw = 1;
     isGameOver = 1;
 }
+function playerGameMode(){
+    return;
+}
+function minimax(){
+    return;
+}
 board.addEventListener('click',function(event){
     const select = event.target.closest('div');
     if(checkIfOccupied(select)&& !isGameOver){
@@ -77,4 +84,26 @@ board.addEventListener('click',function(event){
         }
     }
     checkWinner();
+    if(isGameOver){
+        const gameRestartButton = document.getElementById('restart');
+        gameRestartButton.classList.remove('invisble');
+        gameRestartButton.classList.add('visible');
+        // restart.classList.remove('invisble');
+        // restart.classList.add('visible');
+    }
+})
+restart.addEventListener('click', function(){
+    for(let i = 0;i<9;i++){
+        let selectCellForReset = document.getElementById(`${i}`)
+        selectCellForReset.textContent = '';
+        boardArray[i] = '-';
+    }
+    const gameRestartButton = document.getElementById('restart');
+    gameRestartButton.classList.remove('visible');
+    gameRestartButton.classList.add('invisible');
+    // restart.classList.remove('visible');
+    // restart.classList.add('invisible');
+    isGameDraw = 0;
+    isGameOver = 0;
+    playerMove=1;
 })

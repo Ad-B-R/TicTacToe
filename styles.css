@@ -25,6 +25,22 @@
     text-align: center;
     font-size: 3rem;
 }
-.invisble{
+.invisible{
     display: none;
+}
+.visible{
+    display: flex;
+    align-content: center;
+    margin: 0 auto;
+    justify-content: center;
+    margin-top: 5vh;
+    width:15rem;
+}
+#restartbutton{
+    flex:1;
+    height:3rem;
+    border-radius: 1rem;
+    background-color: orange;
+    font-family: serif;
+    font-size: 2rem;
 }
