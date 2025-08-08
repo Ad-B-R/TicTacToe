@@ -3,6 +3,8 @@ const restart = document.getElementById('restartbutton');
 const winsOfX = document.getElementById('displayX');
 const winsOfO = document.getElementById('displayO');
 const winsOfDraw = document.getElementById('displayDraw');
+const menuBar = document.querySelector('#menu');
+let isComputerPlaying = 0;
 let isGameOver = 0;
 let isGameDraw = 0;
 let playerMove = 1;
@@ -22,9 +24,19 @@ function appendPlayer(cell, playerMove){
         boardArray[parseInt(cell.id)] = 'O';
     }
 }
-function scoreCard(){
-
-}
+menuBar.addEventListener('click',function(event){
+    const iconClicked = event.target.closest('img');
+    console.log('Yes');
+    if(iconClicked==document.querySelector('#resetAll')){
+        winsOfDraw.textContent = 0;
+        winsOfX.textContent = 0;
+        winsOfO.textContent = 0;
+        restart.click();
+    }
+    else if(iconClicked==document.querySelector('#computer')){
+        isComputerPlaying = 1;
+    }
+})
 function checkIfOccupied(cell){
     if(boardArray[parseInt(cell.id)]==='-'){
         return true;
