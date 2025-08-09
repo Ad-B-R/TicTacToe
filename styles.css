@@ -18,6 +18,16 @@ body, html{
     height: 2rem;
     width:2rem;
 }
+#playerChooseOption{
+    flex-direction: column;
+    gap: 2rem;
+    align-content: center;
+    justify-content: center;
+}
+#playerChoiceForComputer{
+    display: flex;
+    gap:6rem;
+}
 #board{
     /* margin:50vh; */
     display: grid;
@@ -28,6 +38,15 @@ body, html{
     margin-top: 20vh;
     height:40vh;
     width:40vh;
+}
+.OptionComputer{
+    border-radius: 1rem;
+    border: 1px solid black;
+    font-size: 1rem;
+    padding:1rem;
+}
+.OptionComputer:hover{
+    background-color: green;
 }
 .cell{
     border:1px solid white;

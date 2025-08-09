@@ -4,10 +4,14 @@ const winsOfX = document.getElementById('displayX');
 const winsOfO = document.getElementById('displayO');
 const winsOfDraw = document.getElementById('displayDraw');
 const menuBar = document.querySelector('#menu');
+const computerInterface = document.querySelector('#playerChooseOption');
+let isComputerIconToggled = 0;
 let isComputerPlaying = 0;
 let isGameOver = 0;
 let isGameDraw = 0;
 let playerMove = 1;
+let playerChoiceComputerGame = NaN; 
+let computerChoiceComputerGame = NaN; 
 let boardArray = ['-','-','-','-','-','-','-','-','-']
 
 for(let i = 0;i<9;i++){
@@ -35,6 +39,20 @@ menuBar.addEventListener('click',function(event){
     }
     else if(iconClicked==document.querySelector('#computer')){
         isComputerPlaying = 1;
+        if(!isComputerIconToggled){
+            computerInterface.classList.add('visible');
+            computerInterface.classList.remove('invisible');
+            isComputerIconToggled = 1;
+        }
+        else{
+            computerInterface.classList.add('invisible');
+            computerInterface.classList.remove('visible');
+            isComputerIconToggled = 0;
+        }
+    }
+    else{
+        isComputerIconToggled = 0;
+        isComputerPlaying = 0;
     }
 })
 function checkIfOccupied(cell){
@@ -113,31 +131,46 @@ function checkWinner(isPlayingGame){
         console.log("Draw working");
     }
 }
-function playerGameMode(){
-    return;
-}
+computerInterface.addEventListener('click',function(event){
+    const choiceElement = event.target.closest('.OptionComputer');
+    if(choiceElement === document.querySelector('#playerChoiceX')){
+        playerChoiceComputerGame = 'X';
+        computerChoiceComputerGame = 'O';
+        console.log(playerChoiceComputerGame);
+    }
+    else if(choiceElement === document.querySelector('#playerChoiceO')){
+        playerChoiceComputerGame = 'O';
+        computerChoiceComputerGame = 'X';
+        console.log(playerChoiceComputerGame);
+    }
+    computerInterface.classList.add('invisible');
+    computerInterface.classList.remove('visible');
+    isComputerIconToggled = 0;
+});
 function minimax(){
     return;
 }
 board.addEventListener('click',function(event){
     const select = event.target.closest('div');
-    if(checkIfOccupied(select)&& !isGameOver){
-        if(playerMove==1){
-            select.textContent = 'X';
-            select.classList.add('char');
-            appendPlayer(select,playerMove)
-            playerMove = -1;
-            console.log(boardArray);
-        }
-        else{
-            select.textContent='O';
-            select.classList.add('char');
-            appendPlayer(select,playerMove)
-            playerMove = 1;
-            console.log(boardArray);
+    if(!isComputerPlaying){
+        if(checkIfOccupied(select)&& !isGameOver){
+            if(playerMove==1){
+                select.textContent = 'X';
+                select.classList.add('char');
+                appendPlayer(select,playerMove)
+                playerMove = -1;
+                console.log(boardArray);
+            }
+            else{
+                select.textContent='O';
+                select.classList.add('char');
+                appendPlayer(select,playerMove)
+                playerMove = 1;
+                console.log(boardArray);
+            }
         }
     }
-    checkWinner(1);
+        checkWinner(1);
     if(isGameOver){
         const gameRestartButton = document.getElementById('restart');
         gameRestartButton.classList.remove('invisble');
