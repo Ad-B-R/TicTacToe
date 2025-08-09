@@ -19,7 +19,7 @@ cd TicTacToe
 You can simply open index.html in your browser
 
 3. ### Script Content (Optional)
-If you are on MacOS or Linux, you can run simply run the script in the terminal
+If you are on MacOS or Linux, you can simply run the script in the terminal
 ```
 chmod +x run.sh
 ./run.sh
