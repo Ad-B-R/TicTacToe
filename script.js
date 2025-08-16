@@ -70,11 +70,16 @@ function checkWinner(isPlayingGame){
             isGameOver = 1;
             if(isPlayingGame&&isGameOver){
                 if(boardArray[i]=='X'){
-            winsOfX.textContent = parseInt(winsOfX.textContent) + 1;
-        }
-        else{
-            winsOfO.textContent = parseInt(winsOfO.textContent) + 1;
-        }
+                    winsOfX.textContent = parseInt(winsOfX.textContent) + 1;
+                }
+                else{
+                    winsOfO.textContent = parseInt(winsOfO.textContent) + 1;
+                }
+            }
+            else if(isGameOver){
+                isGameOver = 0;
+                if(boardArray[i]=='X') return 1;
+                else return -1;
             }
             return;
         }
@@ -85,11 +90,16 @@ function checkWinner(isPlayingGame){
             isGameOver = 1;
             if(isPlayingGame&&isGameOver){
                 if(boardArray[i]=='X'){
-            winsOfX.textContent = parseInt(winsOfX.textContent) + 1;
-        }
-        else{
-            winsOfO.textContent = parseInt(winsOfO.textContent) + 1;
-        }
+                    winsOfX.textContent = parseInt(winsOfX.textContent) + 1;
+                }
+                else{
+                    winsOfO.textContent = parseInt(winsOfO.textContent) + 1;
+                }
+            }
+            else if(isGameOver){
+                isGameOver = 0;
+                if(boardArray[i]=='X') return 1;
+                else return -1;
             }
             return;
         }
@@ -99,11 +109,16 @@ function checkWinner(isPlayingGame){
         isGameOver = 1;
         if(isPlayingGame&&isGameOver){
             if(boardArray[4]=='X'){
-            winsOfX.textContent = parseInt(winsOfX.textContent) + 1;
+                winsOfX.textContent = parseInt(winsOfX.textContent) + 1;
+            }
+            else{
+                winsOfO.textContent = parseInt(winsOfO.textContent) + 1;
+            }
         }
-        else{
-            winsOfO.textContent = parseInt(winsOfO.textContent) + 1;
-        }
+        else if(isGameOver){
+            isGameOver = 0;
+            if(boardArray[4]=='X') return 1;
+            else return -1;
         }
         return;
     }
@@ -112,24 +127,33 @@ function checkWinner(isPlayingGame){
         isGameOver = 1;
         if(isPlayingGame&&isGameOver){
             if(boardArray[4]=='X'){
-            winsOfX.textContent = parseInt(winsOfX.textContent) + 1;
+                winsOfX.textContent = parseInt(winsOfX.textContent) + 1;
+            }
+            else{
+                winsOfO.textContent = parseInt(winsOfO.textContent) + 1;
+            }
         }
-        else{
-            winsOfO.textContent = parseInt(winsOfO.textContent) + 1;
-        }
+        else if(isGameOver){
+            isGameOver = 0;
+            if(boardArray[4]=='X') return 1;
+            else return -1;
         }
         return;
     }
     for(let i = 0;i<9;i++){
-        if(boardArray[i]=='-') return;
+        if(boardArray[i]=='-') return -100;
     }
     console.log('is Draw');
-    isGameDraw = 1;
-    isGameOver = 1;
-    if(isPlayingGame&&isGameOver){
+    if(isPlayingGame){
+        isGameDraw = 1;
+        isGameOver = 1;
         winsOfDraw.textContent = parseInt(winsOfDraw.textContent)+1;
         console.log("Draw working");
     }
+    else{
+        return 0;
+    }
+
 }
 computerInterface.addEventListener('click',function(event){
     const choiceElement = event.target.closest('.OptionComputer');
@@ -147,8 +171,8 @@ computerInterface.addEventListener('click',function(event){
     computerInterface.classList.remove('visible');
     isComputerIconToggled = 0;
 });
-function minimax(){
-    return;
+function minimax(depth, board, computerPlayer, playerPlayer, computerMoveMin, cumulativeValue){
+    
 }
 board.addEventListener('click',function(event){
     const select = event.target.closest('div');
@@ -169,6 +193,11 @@ board.addEventListener('click',function(event){
                 console.log(boardArray);
             }
         }
+    }
+    else{
+        if(computerChoiceComputerGame === 'X') playerMove = -1;
+        else playerMove = 1;
+
     }
         checkWinner(1);
     if(isGameOver){

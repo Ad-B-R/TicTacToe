@@ -24,3 +24,5 @@ If you are on MacOS or Linux, you can simply run the script in the terminal
 chmod +x run.sh
 ./run.sh
 ```
+
+> ⚠️ **Note:** This project is not finished yet. Features may be missing or unstable.
